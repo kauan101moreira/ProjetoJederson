@@ -1,3 +1,4 @@
+# Importações necessárias
 from fastapi import FastAPI
 from .routers import movies
 from .database import engine, Base
