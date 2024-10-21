@@ -1,0 +1,431 @@
+/* Estilo geral do corpo */
+body {
+  background-color: #121212; /* Cor de fundo */
+  color: #FFFFFF; /* Cor do texto */
+  font-family: 'Nexa', sans-serif; /* Fonte NexaBold */
+  margin: 0; /* Remove margens padrão */
+  padding: 0; /* Remove padding padrão */
+}
+
+/* Estilo do cabeçalho */
+.App-header {
+  background-color: #1C1C1C; /* Cor de fundo do cabeçalho */
+  padding: 20px; /* Espaçamento interno */
+  text-align: center; /* Centraliza o texto */
+  color: #ffffff; /* Cor do texto do cabeçalho */
+  font-size: 2.5rem; /* Tamanho da fonte */
+  font-family: 'Nexa', sans-serif; /* Fonte NexaBold */
+  border-bottom: 2px solid #ffffff; /* Borda inferior */
+}
+
+/* Estilo da lista de filmes */
+.movies-list {
+  display: grid; /* Usando grid para layout */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Layout responsivo */
+  gap: 20px; /* Espaçamento entre os cards */
+  padding: 20px; /* Espaçamento interno */
+}
+
+/* Estilo da imagem do filme */
+.movie-cover {
+  width: 100%; /* Largura total do card */
+  border-radius: 8px; /* Bordas arredondadas */
+  height: auto; /* Mantém a proporção da imagem */
+}
+
+/* Botões */
+.primary {
+  background-color: #FF6F61; /* Cor de fundo do botão primário */
+  color: #FFFFFF; /* Cor do texto do botão */
+  border: none; /* Remove borda */
+  border-radius: 5px; /* Bordas arredondadas */
+  padding: 10px 20px; /* Espaçamento interno */
+  cursor: pointer; /* Muda o cursor para indicar que é clicável */
+  margin: 5px; /* Margem entre os botões */
+}
+
+.secondary {
+  background-color: transparent; /* Fundo transparente */
+  color: #FF6F61; /* Cor do texto do botão secundário */
+  border: 1px solid #FF6F61; /* Borda do botão secundário */
+  border-radius: 5px; /* Bordas arredondadas */
+  padding: 10px 20px; /* Espaçamento interno */
+  cursor: pointer; /* Muda o cursor para indicar que é clicável */
+  margin: 5px; /* Margem entre os botões */
+}
+
+.session-slide {
+  color: #FFFFFF; /* Cor do texto */
+  text-align: center; /* Centraliza texto */
+  padding: 20px; /* Espaçamento interno do slide */
+  border: 1px solid #FF6F61; /* Borda do slide */
+  border-radius: 8px; /* Bordas arredondadas */
+  background-color: #ffffff; /* Cor de fundo do slide */
+  min-height: 100px; /* Altura mínima para manter a uniformidade */
+}
+
+/* Estilo para os pontos do carrossel */
+.slick-dots {
+  bottom: -30px; /* Ajusta a posição dos pontos */
+}
+
+
+.slick-dots li button {
+  background: #cccccc; /* Cor do ponto inativo */
+  border-radius: 50%; /* Ponto redondo */
+  width: 10px; /* Largura do ponto */
+  height: 10px; /* Altura do ponto */
+}
+
+/* Estilo da lista de filmes */
+.movies-list {
+  display: grid; /* Usando grid para layout */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Layout responsivo */
+  gap: 20px; /* Espaçamento entre os cards */
+  padding: 20px; /* Espaçamento interno */
+}
+
+/* Estilo dos cards de filmes */
+.movie-card {
+  background-color: #1C1C1C; /* Cor de fundo do card */
+  color: #FFFFFF; /* Cor do texto do card */
+  border-radius: 8px; /* Bordas arredondadas */
+  padding: 20px; /* Espaçamento interno */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra do card */
+  transition: transform 0.3s ease; /* Transição suave */
+  display: flex; /* Flexbox para alinhar conteúdo */
+  flex-direction: column; /* Coluna para alinhar itens verticalmente */
+  align-items: center; /* Centraliza horizontalmente */
+  text-align: center; /* Centraliza o texto */
+}
+
+/* Estilo das imagens dos filmes */
+.movie-cover {
+  width: 100%; /* Largura total do card */
+  height: 300px; /* Altura fixa para uniformizar o tamanho */
+  object-fit: cover; /* Cobre a área do card sem distorção */
+  border-radius: 8px; /* Bordas arredondadas na imagem */
+}
+
+/* Efeito hover nos cards */
+.movie-card:hover {
+  transform: scale(1.05); /* Aumenta o tamanho do card */
+}
+
+/* Estilo do botão */
+button {
+  background-color: #00ff73; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  border: none; /* Sem borda */
+  padding: 10px 20px; /* Espaçamento interno */
+  border-radius: 5px; /* Bordas arredondadas */
+  cursor: pointer; /* Cursor de mãozinha */
+  font-size: 16px; /* Tamanho da fonte */
+  transition: background-color 0.3s, transform 0.3s; /* Transição suave */
+  margin-top: 10px; /* Espaçamento acima dos botões */
+}
+
+/* Efeito hover nos botões */
+button:hover {
+  background-color: #FFD700; /* Muda a cor de fundo */
+  transform: scale(1.05); /* Aumenta o tamanho ligeiramente */
+}
+
+/* Estilo do botão desabilitado */
+button:disabled {
+  background-color: #cccccc; /* Cor de fundo para botão desabilitado */
+  cursor: not-allowed; /* Cursor de "não permitido" */
+}
+
+
+button.secondary {
+  background-color: #ffffff; /* Cor secundária */
+}
+
+button.secondary:hover {
+  background-color: #d8d8d8; /* Muda a cor ao passar o mouse */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  h1 {
+      font-size: 2rem; /* Tamanho do título em telas menores */
+  }
+
+  .movies-list {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Ajuste em telas menores */
+  }
+}
+
+.session-carousel {
+  padding: 20px; /* Espaçamento interno */
+  background-color: #1C1C1C; /* Cor de fundo */
+  border-radius: 8px; /* Bordas arredondadas */
+  margin: 20px; /* Margem externa */
+}
+
+.App-header {
+  background-color: #1C1C1C; /* Cor de fundo do cabeçalho */
+  padding: 20px; /* Espaçamento interno */
+  text-align: center; /* Centraliza o texto */
+  color: #ffffff; /* Cor do texto do cabeçalho */
+  font-size: 2.5rem; /* Tamanho da fonte */
+  font-family: 'Nexa', sans-serif; /* Fonte NexaBold */
+}
+
+.App-header {
+  background-image: url('./assets/cinema-background.jpg'); /* Caminho da imagem */
+  background-size: cover; /* Faz com que a imagem cubra todo o espaço do cabeçalho */
+  background-position: center; /* Centraliza a imagem */
+  padding: 40px 20px; /* Ajusta o espaçamento interno */
+  text-align: center; /* Centraliza o texto */
+  color: #ffffff; /* Cor do texto */
+  font-size: 2.5rem; /* Tamanho da fonte */
+  font-family: 'Nexa', sans-serif; /* Fonte NexaBold */
+  border-bottom: 2px solid #FF6F61; /* Borda inferior */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px; /* Altura do cabeçalho */
+}
+
+.session-slide {
+  color: #FFFFFF;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #FF6F61;
+  border-radius: 8px;
+  background-color: #2E2E2E;
+  min-height: 300px; /* Aumenta a altura mínima para acomodar a imagem */
+}
+
+.movie-image {
+  width: 100%;
+  height: 200px; /* Define a altura das imagens */
+  object-fit: cover; /* Garante que as imagens se ajustem ao container */
+  border-radius: 8px; /* Deixa as bordas da imagem arredondadas */
+  margin-bottom: 15px; /* Espaçamento abaixo da imagem */
+}
+
+.session-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #FFFFFF;
+}
+
+/* Cor dos pontos do carrossel */
+.slick-dots li button {
+  background: #00ff0d; /* Cor dos pontos ativos */
+  border-radius: 50%; /* Ponto redondo */
+}
+
+/* Cor dos pontos inativos */
+.slick-dots li button.slick-active {
+  background: #ffffff; /* Cor dos pontos ativos */
+}
+
+/* Efeito hover nos pontos do carrossel */
+.slick-dots li button:hover {
+  background: #ffffff; /* Cor ao passar o mouse */
+}
+
+/* Escurecer as imagens */
+.session-slide {
+    position: relative; /* Posiciona os elementos de forma relativa */
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #FF6F61;
+    border-radius: 8px;
+    background-color: #2E2E2E;
+    min-height: 300px;
+}
+
+/* Adicionando o overlay escuro sobre a imagem */
+.movie-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    filter: brightness(50%); /* Escurece a imagem */
+    position: relative;
+}
+
+/* Texto sobreposto à imagem */
+.session-slide h4 {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(151, 149, 149);
+    font-size: 1.2rem;
+}
+
+.session-slide .session-info {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.session-slide p {
+    margin: 5px 0;
+}
+
+/* Ajustes adicionais para o carrossel */
+.session-carousel h2 {
+    color: #FF6F61;
+    text-align: center;
+}
+
+/* Texto sobreposto à imagem */
+.session-slide h4 {
+  color: rgb(136, 136, 136);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+/* Estilização das informações da sessão */
+.session-info {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  margin-bottom: 10px;
+}
+
+/* Estilo para o formato do filme */
+.session-slide p {
+  color: #FF6F61;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Ajuste para o título do carrossel */
+.session-carousel h2 {
+  color: #FF6F61;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Texto sobreposto à imagem */
+.session-slide h4 {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+/* Estilo para o formato do filme e classificação */
+.session-slide p {
+  color: #8361ff;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Estilização dos cards do carrossel */
+.session-slide {
+  position: relative;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ffffff;
+  border-radius: 12px; /* Bordas arredondadas */
+  background-color: #2E2E2E;
+  min-height: 300px; /* Altura mínima para o card */
+  max-width: 400px; /* Largura maior para um formato retangular */
+  margin: 0 auto; /* Centraliza o card no carrossel */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve ao redor do card */
+}
+
+/* Texto sobreposto à imagem */
+.session-slide h4 {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+/* Estilização das informações da sessão */
+.session-info {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  margin-bottom: 10px;
+}
+
+/* Estilo para o formato do filme e classificação indicativa */
+.session-slide p {
+  color: #ffffff;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Ajuste para o título do carrossel */
+.session-carousel h2 {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Estilização dos cards do carrossel */
+.session-slide {
+  position: relative;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ffffff;
+  border-radius: 12px;
+  background-color: #2E2E2E;
+  min-height: 300px; /* Diminui a altura mínima do card */
+  max-width: 450px; /* Aumenta a largura máxima do card */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Mantém a distribuição equilibrada do conteúdo */
+  align-items: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo da imagem dentro dos cards */
+.movie-image {
+  width: 100%; /* Mantém a largura total do card */
+  height: 180px; /* Altura da imagem */
+  object-fit: cover; /* Garante que a imagem preencha o espaço sem distorção */
+  border-radius: 8px; /* Bordas arredondadas */
+  margin-bottom: 15px; /* Espaçamento inferior */
+  filter: brightness(50%); /* Escurece a imagem */
+}
+
+/* Centraliza o título do filme na imagem */
+.movie-title {
+  position: absolute; /* Permite o posicionamento absoluto sobre a imagem */
+  top: 50%; /* Posiciona no meio verticalmente */
+  left: 50%; /* Posiciona no meio horizontalmente */
+  transform: translate(-50%, -50%); /* Centraliza completamente */
+  color: white; /* Cor do texto */
+  font-size: 1.4rem; /* Tamanho da fonte */
+  text-align: center; /* Centraliza o texto */
+}
+
+/* Estilização das informações da sessão */
+.session-info {
+  display: flex;
+  justify-content: center; /* Mantém as informações centralizadas */
+  color: white;
+  margin: 10px 0;
+  font-size: 0.9rem;
+  gap: 20px; /* Espaçamento entre as informações */
+}
+
+/* Ajusta os textos de formato do filme */
+.session-slide p {
+  color: #ffffff; /* Cor do texto para formato */
+  font-size: 0.9rem;
+  margin: 5px 0;
+  text-align: center; /* Centraliza o texto */
+}
