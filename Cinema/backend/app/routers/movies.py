@@ -1,48 +1,44 @@
-# Importações necessárias para definir as rotas do FastAPI
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from .. import crud, models, schemas
-from ..database import SessionLocal, engine
+from fastapi import FastAPI, Depends, HTTPException
 
-# Criação do router para lidar com rotas de filmes
+from .. import crud, schemas, models
+from ..database import get_db
+
 router = APIRouter()
 
-# Garante que as tabelas estejam criadas no banco de dados
-models.Base.metadata.create_all(bind=engine)
-
-# Função que retorna a sessão do banco de dados
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-# Rota para obter todos os filmes
 @router.get("/movies", response_model=list[schemas.Movie])
 def read_movies(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
-    movies = crud.get_movies(db, skip=skip, limit=limit)
-    return movies
+    try:
+        movies = crud.get_movies(db, skip=skip, limit=limit)
+        return movies
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro ao buscar filmes: {str(e)}")
 
-# Rota para obter um filme específico pelo ID
-@router.get("/movies/{movie_id}", response_model=schemas.Movie)
-def read_movie(movie_id: int, db: Session = Depends(get_db)):
-    db_movie = crud.get_movie(db, movie_id=movie_id)
-    if db_movie is None:
-        raise HTTPException(status_code=404, detail="Filme não encontrado")
-    return db_movie
-
-# Rota para criar um novo filme
 @router.post("/movies", response_model=schemas.Movie)
 def create_movie(movie: schemas.MovieCreate, db: Session = Depends(get_db)):
-    return crud.create_movie(db=db, movie=movie)
+    try:
+        return crud.create_movie(db=db, movie=movie)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro ao criar filme: {str(e)}")
 
-# Rota para deletar um filme pelo ID
-@router.delete("/movies/{movie_id}", response_model=schemas.Movie)
+@router.get("/movies/{movie_id}", response_model=schemas.Movie)
+def read_movie(movie_id: int, db: Session = Depends(get_db)):
+    try:
+        db_movie = crud.get_movie(db, movie_id=movie_id)
+        if db_movie is None:
+            raise HTTPException(status_code=404, detail="Filme não encontrado")
+        return db_movie
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro ao buscar filme: {str(e)}")
+
+@router.delete("/movies/{movie_id}")
 def delete_movie(movie_id: int, db: Session = Depends(get_db)):
-    db_movie = crud.get_movie(db, movie_id=movie_id)
-    if db_movie is None:
-        raise HTTPException(status_code=404, detail="Filme não encontrado")
-    return crud.delete_movie(db=db, movie_id=movie_id)
-
-
+    try:
+        db_movie = crud.get_movie(db, movie_id=movie_id)
+        if db_movie is None:
+            raise HTTPException(status_code=404, detail="Filme não encontrado")
+        crud.delete_movie(db=db, movie_id=movie_id)
+        return {"message": "Filme removido"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro ao deletar filme: {str(e)}")

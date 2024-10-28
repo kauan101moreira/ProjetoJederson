@@ -1,18 +1,22 @@
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import Optional
+
+
 
 class MovieBase(BaseModel):
-    title: str  # Campo para o título do filme
-    description: str  # Campo para a descrição do filme
-    rating: float  # Campo para a classificação do filme
-    genre: str  # Campo para o gênero do filme
+    title: str
+    genre: str
+    description: Optional[str] = None
+    rating: Optional[float] = None
+    year: int  
 
 class MovieCreate(MovieBase):
-    pass  # Classe para criar novos filmes
+    description: Optional[str] = None
+    rating: Optional[float] = None
 
 class Movie(MovieBase):
-    id: int  # Campo para o ID do filme
+    id: int
 
     class Config:
-        orm_mode = True  # Ativa a compatibilidade com ORM para conversão automática
+        orm_mode = True
 

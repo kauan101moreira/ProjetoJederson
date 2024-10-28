@@ -1,29 +1,45 @@
-# Importações necessárias
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routers import movies
-from .database import engine, Base
+from sqlalchemy.orm import Session
+import uvicorn
 
-# Inicializa o FastAPI
+
+# Importa os modelos e esquemas
+from . import models, schemas
+
+# Importa a lógica de conexão com o banco de dados
+from .database import engine, Base, get_db
+
+# Importa as operações CRUD
+from . import crud
+
+# Importa o roteador de filmes
+from .routers import movies  # Importa o módulo 'movies'
+
 app = FastAPI()
 
-# Configura o CORS para permitir o frontend fazer requisições
+# Configura o CORS (ajuste as origens conforme necessário)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # URL do frontend React (ajuste conforme necessário)
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
-    allow_methods=["*"],  # Permite todos os métodos HTTP (GET, POST, PUT, DELETE)
-    allow_headers=["*"],  # Permite todos os cabeçalhos
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-# Cria as tabelas no banco de dados
-Base.metadata.create_all(bind=engine)
+# Inicializa o banco de dados criando todas as tabelas
+def init_db():
+    Base.metadata.create_all(bind=engine)
 
-# Inclui as rotas
+init_db()  # Chama a função para criar as tabelas
+
+# Inclui o roteador de filmes na aplicação principal
 app.include_router(movies.router)
 
-# Rota raiz
+# Rota raiz opcional
 @app.get("/")
-def root():
+def read_root():
     return {"message": "Bem-vindo ao sistema de gerenciamento de filmes!"}
 
+# Para executar o servidor, use o seguinte comando na linha de comando:
+# uvicorn app.main:app --reload

@@ -10,7 +10,7 @@ function App() {
                 <h1>CineLux</h1> {/* Nome do site */}
             </header>
             <SessionCarousel />
-            <Movies />
+            <Movies /> {/* Aqui você incorpora o componente Movies */}
         </div>
     );
 }
