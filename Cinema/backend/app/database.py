@@ -20,7 +20,7 @@ def init_db():
     Base.metadata.create_all(bind=engine)
 
 # Dependência do banco de dados para usar nas rotas
-def get_db() -> Session:
+def get_db() -> Session: # type: ignore
     db = SessionLocal()
     try:
         yield db
