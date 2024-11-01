@@ -6,7 +6,6 @@ import avengers from '../assets/avengers2.jpg';
 import batman from '../assets/batman2.jpg';
 import interstellar from '../assets/interstellar2.jpg';
 import avatar from '../assets/avatar2.jpg';
-import "../styles/slide.css";
 
 const SessionCarousel = () => {
     const sessions = [
