@@ -1,7 +1,7 @@
 # database.py
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy.orm import sessionmaker
 
 # Define a URL do banco de dados SQLite
 SQLALCHEMY_DATABASE_URL = "sqlite:///./movies.db"
@@ -20,7 +20,7 @@ def init_db():
     Base.metadata.create_all(bind=engine)
 
 # Dependência do banco de dados para usar nas rotas
-def get_db() -> Session: # type: ignore
+def get_db():
     db = SessionLocal()
     try:
         yield db
