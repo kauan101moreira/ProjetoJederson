@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Movies from './Components/Movies';
-import SessionCarousel from './Components/SessionCarousel';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './App.css';
@@ -12,6 +10,7 @@ import Home from './pages/home';
 import Tickets from './pages/ticket';
 import Schedule from './pages/schedule';
 import Contact from './pages/contact';
+import AddMovie from './pages/AddMovies';
 
 function App() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -73,6 +72,7 @@ function App() {
                     <Route path="/ingressos" element={<Tickets />} />
                     <Route path="/programacao" element={<Schedule />} />
                     <Route path="/contato" element={<Contact />} />
+                    <Route path="/adicionarfilme" element={<AddMovie />} />
                 </Routes>
 
                 {/* Rodapé */}

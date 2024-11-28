@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import api from '../api'; // Importa o cliente Axios configurado
 import matrix from '../assets/matrix.jpg';
 import inception from '../assets/inception.jpg';
 import avengers from '../assets/avengers.jpg';
 import batman from '../assets/batman.jpg';
 import interstellar from '../assets/interstellar.jpg';
 import avatar from '../assets/avatar.jpg';
+import toyStory from '../assets/toystory.jpg'
  
-const Movies = () => {
-    const movies = [
+function Movies() {
+    const [backendMovies, setBackendMovies] = useState([]); // Estado para armazenar filmes do backend
+
+    // Lista estática de filmes
+    const staticMovies = [
         {
             title: "Matrix",
             duration: "136 min",
@@ -63,6 +68,18 @@ const Movies = () => {
             wikipediaUrl: "https://pt.wikipedia.org/wiki/Avatar:_O_Caminho_da_%C3%81gua",
         },
     ];
+
+    useEffect(() => {
+        const fetchBackendMovies = async () => {
+            try {
+                const response = await api.get('/movies'); // Requisição GET para o endpoint /movies
+                setBackendMovies(response.data); // Armazena os filmes do backend no estado
+            } catch (error) {
+                console.error('Erro ao buscar filmes do backend:', error);
+            }
+        };
+        fetchBackendMovies();
+    }, []);
  
     const handleTrailerClick = (url) => {
         window.open(url, '_blank');
@@ -74,20 +91,59 @@ const Movies = () => {
  
     return (
         <div className="movies-list">
-            {movies.map((movie, index) => (
-                <div key={index} className="movie-card">
-                    <img src={movie.img} alt={movie.title} className="movie-cover" />
+            {/* Exibe os filmes estáticos */}
+            {staticMovies.map((movie, index) => (
+                <div key={`static-${index}`} className="movie-card">
+                    <img
+                        src={movie.img}
+                        alt={movie.title}
+                        className="movie-cover"
+                        onClick={() => handleTrailerClick(movie.trailerUrl)}
+                        style={{ cursor: 'pointer' }}
+                    />
                     <h3>{movie.title}</h3>
-                    <p>{movie.duration}, {movie.genre}, {movie.year}</p>
+                    <p>
+                        {movie.duration}, {movie.genre}, {movie.year}
+                    </p>
                     <button
                         className="primary"
                         onClick={() => handleTrailerClick(movie.trailerUrl)}
-                    > Assistir Trailer
+                    >
+                        Assistir Trailer
+                    </button>
+                    <button className="secondary"
+                        onClick={() => handleWikipediaClick(movie.wikipediaUrl)}
+                    >
+                        Mais Informações
+                    </button>
+                </div>
+            ))}
+
+            {/* Exibe os filmes do backend */}
+            {backendMovies.map((movie, index) => (
+                <div key={`backend-${index}`} className="movie-card">
+                    <img
+                        src={movie.img || toyStory}  // Usando a imagem do backend ou uma imagem padrão
+                        alt={movie.title}
+                        className="movie-cover"
+                        onClick={() => handleTrailerClick(movie.trailerUrl)}
+                        style={{ cursor: 'pointer' }}
+                    />
+                    <h3>{movie.title}</h3>
+                    <p>
+                        {movie.duration} min, {movie.genre}, {movie.year}
+                    </p>
+                    <button
+                        className="primary"
+                        onClick={() => handleTrailerClick(movie.trailerUrl)}
+                    >
+                        Assistir Trailer
                     </button>
                     <button
                         className="secondary"
-                        onClick={() => handleWikipediaClick(movie.wikipediaUrl)}
-                    > Mais Informações
+                        onClick={() => handleWikipediaClick(movie.trailerUrl)}
+                    >
+                        Mais Informações
                     </button>
                 </div>
             ))}

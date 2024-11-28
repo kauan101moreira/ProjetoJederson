@@ -6,12 +6,11 @@ from typing import Optional
 class MovieBase(BaseModel):
     title: str
     genre: str
-    description: Optional[str] = None
+    duration: int
     rating: Optional[float] = None
     year: int  
 
 class MovieCreate(MovieBase):
-    description: Optional[str] = None
     rating: Optional[float] = None
 
 class Movie(MovieBase):

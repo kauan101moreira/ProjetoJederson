@@ -1,16 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy.orm import Session
-import uvicorn
 
-# Importa os modelos e esquemas
-from . import models, schemas
 
 # Importa a lógica de conexão com o banco de dados
 from .database import engine, Base, get_db
 
-# Importa as operações CRUD
-from . import crud
 
 # Importa o roteador de filmes
 from .routers import movies  # Importa o módulo 'movies'

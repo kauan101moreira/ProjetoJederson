@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from . import models, schemas
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import HTTPException
 
 
 def get_movies(db: Session, skip: int = 0, limit: int = 10):
@@ -16,7 +16,7 @@ def create_movie(db: Session, movie: schemas.MovieCreate):
     db_movie = models.Movie(
         title=movie.title,
         genre=movie.genre,
-        description=movie.description,
+        duration=movie.duration,
         rating=movie.rating,
         year=movie.year  # Certifique-se de que este campo exista no modelo
     )
